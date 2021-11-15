@@ -1,0 +1,47 @@
+{
+  "name": "habitual",
+  "version": "1.0.0",
+  "description": "A wellness and habit tracker",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=production node server/server.js",
+    "build": "NODE_ENV=production webpack",
+    "dev": "NODE_ENV=dev nodemon server/server.js & webpack serve --open --hot",
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jigglypuff-FTRI4/Habitual.git"
+  },
+  "author": "Team Jigglypuff",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jigglypuff-FTRI4/Habitual/issues"
+  },
+  "homepage": "https://github.com/Jigglypuff-FTRI4/Habitual#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "css-loader": "^6.5.1",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.13",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router": "^6.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-react": "^7.16.0",
+    "babel-loader": "^8.2.3",
+    "eslint": "^8.2.0",
+    "eslint-plugin-react": "^7.27.0",
+    "html-webpack-plugin": "^5.5.0",
+    "nodemon": "^2.0.15",
+    "sass": "^1.43.4",
+    "sass-loader": "^12.3.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.64.1",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "3.11.0"
+  }
+}
