@@ -31,9 +31,12 @@ module.exports = {
   devServer: {
     publicPath: '/',
     port: 8080,
+    // compress: true,
     proxy: {
-      '/': 'http://localhost:3000/',
+      // "*": "http://[::1]:8081"
+      '/moodComment': 'http://localhost:3000/',
     },
+
   },
   plugins: [new HtmlWebpackPlugin({ template: './index.html' })],
 };
