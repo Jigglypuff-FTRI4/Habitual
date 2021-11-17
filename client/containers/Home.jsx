@@ -23,9 +23,10 @@ const Home = (props) => {
   const [durationSubmitted, setDurationSubmitted] = useState("");
   const [exerciseSubmitComplete, setExerciseSubmitComplete] = useState(false);
 
+
   const handleClick = (e) => {
     console.log("fetch request will happen here");
-    //if res === 200:
+
     setSubmitComplete(true);
   };
 
@@ -42,6 +43,7 @@ const Home = (props) => {
           setCommentSubmitted={setCommentSubmitted}
           handleClick={handleClick}
         />
+          <h3>How much exercise have you gotten today?</h3>
         <Exercise
           setExerciseSubmitted={setExerciseSubmitted}
           setDurationSubmitted={setDurationSubmitted}
@@ -52,10 +54,20 @@ const Home = (props) => {
   } else {
     return (
       <div id="thanks">
-        <h1>Thank you for submitting!</h1>
+        <div>
+          <h1>Thank you for submitting!</h1>
+        </div>
+          <h3>You've already submitted your mood, but feel free to add more exercise!</h3>
+        <Exercise
+          setExerciseSubmitted={setExerciseSubmitted}
+          setDurationSubmitted={setDurationSubmitted}
+          handleExerciseClick={handleExerciseClick}
+        />
       </div>
     );
   }
 };
+
+
 
 export default Home;
