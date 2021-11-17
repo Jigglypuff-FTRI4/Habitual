@@ -11,14 +11,14 @@
 const path = require('path');
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const app = express();
+const PORT = 3000;
 
 //require controllers
 //const dataControllers =  require('./controllers/dataControllers')
 const authControllers = require('./controllers/authControllers');
 const calendarControllers = require('./controllers/calendarControllers');
 const dataController =  require('./controllers/dataControllers');
-
-const PORT = 3000;
 
 // ROUTER: Parses incoming data
 app.use(express.urlencoded({ extended: true }));
