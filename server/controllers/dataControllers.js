@@ -1,3 +1,12 @@
+/**
+ * ************************************
+ *
+ * @module dataController.js
+ * @description contains all controllers for homepage (postMood, postExercise, postCheck)
+ *
+ * ************************************
+ */
+
 const db = require('../models');
 const path = require('path');
 
