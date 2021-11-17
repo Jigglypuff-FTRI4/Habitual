@@ -28,13 +28,12 @@ const Home = (props) => {
   const currentDate = formattedDate();
 
   useEffect(() => {
-    // fetch('/home/2021-11-30/2')
     fetch(`/home/${currentDate}/2`)
       .then((data) => data.json())
       .then((data) => {
         setSubmitComplete(data);
       });
-  }, [handleClick]);
+  }, [moodSubmitted]);
 
   const handleClick = (e) => {
     console.log("mood request");

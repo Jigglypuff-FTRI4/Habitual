@@ -15,8 +15,11 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import formattedDate from './date';
 
-export default function NavBar() {
+export default function NavBar({
+  setPage,
+}) {
   return (
     <Box>
       <AppBar position="static" >
@@ -24,10 +27,11 @@ export default function NavBar() {
           <Typography variant="h5" component="h1" sx={{ flexGrow: 1 }}>
             Habitual&trade;
           </Typography>
-          {/* <Button color="inherit" onClick={handleOpenLoginModal}>Login</Button>} */}
-          <Button color="inherit">Home</Button>
-          <Button color="inherit">Calendar</Button>
-          <Button color="inherit">Logout</Button>
+          <Typography variant="h5" component="h1" sx={{ flexGrow: 1 }}>
+            {formattedDate()}
+          </Typography>
+          <Button color="inherit" onClick={() => setPage('home')}>Home</Button>
+          <Button color="inherit" onClick={() => setPage('calendar')}>Calendar</Button>
         </Toolbar>
       </AppBar>
     </Box>

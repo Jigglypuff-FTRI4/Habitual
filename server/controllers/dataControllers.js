@@ -19,8 +19,7 @@ const dataController = {
 
     const postMoodQuery =
       `INSERT INTO mood (date, mood, comment, user_id)
-      VALUES ($1, $2, $3, $4)
-      RETURNING mood, comment;` // may not need to return all for calendar update
+      VALUES ($1, $2, $3, $4);`
 
     const values = [
       req.body.date,
@@ -79,6 +78,8 @@ const dataController = {
       return next();
     })
   }
+
+  //add check for exercise
 
 
 };
