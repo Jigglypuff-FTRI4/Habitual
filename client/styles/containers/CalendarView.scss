@@ -1,8 +1,19 @@
 #calendar-view {
-    border-style: groove;
-    width: 400px;
-    display: flex;
-    justify-content: center;
+  border-style: groove;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+}
 
-
+.calendar .day {
+  position: relative;
+  width: calc(100% / 7);
+  height: 44px;
+  display: inline-block;
+  background-color: white;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  z-index: 1;
+  text-align: center;
 }
