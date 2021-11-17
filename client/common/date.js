@@ -8,7 +8,7 @@
  */
 
 const formattedDate = () => {
-	
+
 	const today = new Date();
 	
 	const createDate = date => {

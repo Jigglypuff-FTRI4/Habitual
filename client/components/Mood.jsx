@@ -13,7 +13,6 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import { TextField } from "@mui/material";
-// import Stack from '@mui/material/Stack';
 import Button from "@mui/material/Button";
 
 const Mood = (props) => {
