@@ -71,7 +71,7 @@ app.get('/home/:date/:user_id', dataController.postCheck, (req, res) => {
 app.post('/home', dataController.postMood, (req, res) => {
   console.log("Hit '/home' post request...");
 
-  return res.status(200).type('json').send('Mood post successful');
+  return res.status(200).type('json').json('Mood post successful');
 });
 
 
