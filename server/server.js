@@ -1,15 +1,67 @@
+//require packages 
 const path = require('path');
 const express = require('express');
+const cookieParser = require('cookie-parser')
+
+//require controllers
+//const dataControllers =  require('./controllers/dataControllers')
+const authControllers =  require('./controllers/authControllers');
+
+// initialize express server and declare a port for the server
+const PORT = 3000;
 const app = express();
 
-const PORT = 3000;
+//insert global parsers for incoming data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-app.use('/dist', express.static(path.join(__dirname, '../dist')))
+// app.use(express.static(path.join(__dirname, '../dist')))
 
+//serve html file when on root url
 app.get('/', (req, res) => {
   return res.status(200).type('html').sendFile(path.join(__dirname, '../index.html'));
 });
 
+//login APIs
+
+/* Create User 
+1. Check if the username specified in the req.body is found in the Users database: 
+  if found: in the controller return res.send('Username exists, please login or choose a different username')
+  if not found: 
+    create the user 
+    then set cookie
+*/
+app.post('/createUser', authControllers.checkUser, authControllers.createUser, authControllers.setCookie, (req, res) =>{
+  //console.log('in createUser API')
+  res.status(200).json({id: res.locals.user.id})
+})
+
+/* Create User 
+1. Check if the username specified in the req.body is found in the Users database: 
+  if found: in the controller return res.send('Username exists, please login or choose a different username')
+  if not found: 
+    create the user 
+    then set cookie
+*/
+app.post('/login', authControllers.verifyUser, authControllers.setCookie, (req, res) =>{
+  res.status(200).json({username: res.locals.user.username})
+})
+
+//home page APIs
+
+
+//calendar page APIs
+
+
+
+
+//route error handler
+app.use((req, res) => {
+  return res.status(404).send('404 error');
+});
+
+//global error handler
 app.use((err, req, res, next) => {
     const defaultErr = {
       log: 'Express error handler caught unknown middleware error',
