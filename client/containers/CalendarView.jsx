@@ -11,10 +11,11 @@ export default function Calender() {
   const startDay = value.clone().startOf('month').startOf('week');
   //last calendar day of the calendar month
   const endDay = value.clone().endOf('month').endOf('week');
-  //set iterator day 1 day before the calendar month
-  const day = startDay.clone().subtract(1, 'day');
-  
+
   useEffect(() => {
+    //set iterator day 1 day before the calendar month
+    const day = startDay.clone().subtract(1, 'day');
+
     const arrayPlaceholder = [];
     //isBefore is a method from moment
     while (day.isBefore(endDay, 'day')) {
@@ -28,7 +29,6 @@ export default function Calender() {
 
     setCalendarArray(arrayPlaceholder);
   }, [value]); //if we select a day in the next month, this will rerender state
-
 
   const calendar = calendarArray.map((week) => (
     <div className='calendar'>
