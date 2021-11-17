@@ -1,3 +1,12 @@
+/**
+ * ************************************
+ *
+ * @module authController.js
+ * @description Contains all controllers for the authentication/login page (checkUser, createUser, verifyUser, setCookie)
+ *
+ * ************************************
+ */
+
 const db = require('../models');
 const authControllers = {};
 
@@ -18,7 +27,7 @@ authControllers.checkUser = (req, res, next) => {
   db.query(checkUserQuery, params, (err, dbResponse) => {
     if (err) {
       next({
-        log: 'ERROR: authController.checkUser',
+        log: 'ERROR: authControllers.checkUser',
         message: { err: err.message },
       });
     }
@@ -52,7 +61,7 @@ authControllers.createUser = (req, res, next) => {
   db.query(createUserQuery, params, (err, dbResponse) => {
     if (err) {
       next({
-        log: 'ERROR: authController.createUser',
+        log: 'ERROR: authControllers.createUser',
         message: { err: err.message },
       });
     }
@@ -79,7 +88,7 @@ authControllers.verifyUser = (req, res, next) => {
   db.query(verifyUserQuery, params, (err, dbResponse) => {
     if (err) {
       next({
-        log: 'ERROR: authController.verifyUser',
+        log: 'ERROR: authControllers.verifyUser',
         message: { err: err.message },
       });
     }
@@ -112,10 +121,10 @@ authControllers.verifyUser = (req, res, next) => {
 authControllers.setCookie = (req, res, next) => {
   //console.log('in setcookie controller');
   // Get user's id primary key and save in a variable
-  const username = res.locals.user.username;
+  const userID = res.locals.user.id;
 
   // Set a cookie equal to the user's username
-  res.cookie('username', username);
+  res.cookie('userID', userID);
   //console.log('set a cookie');
   return next();
 };
