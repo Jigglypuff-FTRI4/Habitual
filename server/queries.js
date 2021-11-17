@@ -30,17 +30,21 @@ FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 ~ Left Join Example Btn users & mood ~
-SELECT m.* 
+SELECT m.date, m.mood, m.comment
 FROM mood m
 LEFT JOIN users u
 ON m.user_id = u.id
-WHERE u.username = ['username here'];
+WHERE u.id = ['userID here']
+AND date BETWEEN ['startDate'] AND ['endDate']
+ORDER BY date ASC;
 
 ~ Left Join Example Btn users & exercise ~
-SELECT e.* 
+SELECT e.date, e.type, e.duration
 FROM exercise e
 LEFT JOIN users u
 ON e.user_id = u.id
-WHERE u.username = ['username here'];
+WHERE u.id = ['userID here']
+AND date BETWEEN ['startDate'] AND ['endDate']
+ORDER BY date ASC;
 
 */
