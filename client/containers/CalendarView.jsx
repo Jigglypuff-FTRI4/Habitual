@@ -1,45 +1,63 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import Calendar from '../components/Calendar.jsx';
+import buildCalendar from '../components/Calendar.jsx';
 import moment from 'moment';
 import '../styles/containers/CalendarView.scss';
+import dayStyles from './styles.js'
 
 export default function Calender() {
-  const { calendarArray, setCalendarArray } = useState([]);
-  const { value, setValue } = useState(moment());
-
-  //first day of the calendar month
-  const startDay = value.clone().startOf('month').startOf('week');
-  //last calendar day of the calendar month
-  const endDay = value.clone().endOf('month').endOf('week');
+  const [calendarArray, setCalendarArray] = useState([]);
+  const [value, setValue] = useState(moment()); //moment is default state
 
   useEffect(() => {
-    //set iterator day 1 day before the calendar month
-    const day = startDay.clone().subtract(1, 'day');
-
-    const arrayPlaceholder = [];
-    //isBefore is a method from moment
-    while (day.isBefore(endDay, 'day')) {
-      arrayPlaceholder.push(
-        //newArray with 7 values, map over the 7 zeros
-        Array(7)
-          .fill(0)
-          .map(() => day.add(1, 'day').clone())
-      );
-    }
-
-    setCalendarArray(arrayPlaceholder);
+    setCalendarArray(buildCalendar(value));
   }, [value]); //if we select a day in the next month, this will rerender state
 
+
+  function currMonthName() {
+    return value.format('MMM'); //format is a method from momemnt
+  }
+
+  function currYear() {
+    return value.format('YYYY');
+  }
+
   const calendar = calendarArray.map((week) => (
-    <div className='calendar'>
-      {week.map((day) => (
-        <div className='day'>{day.format('D')}</div>
-      ))}
-    </div>
+        week.map((day) => (
+          <div className='day' onClick={() => setValue(day)}>
+            <div className={dayStyles(day, value)}>
+              {day.format('D')}
+            </div>
+          </div>
+        ))
   ));
 
-  return <div>{calendar}</div>;
-}
+  function prevMonth() {
+    return value.clone().subtract(1, 'month')
+  }
+
+  function nextMonth() {
+    return value.clone().add(1, 'month')
+  }
+          
+  return (
+  <div className='calendar'>
+    <div className='header'>
+      <div className='previous' onClick={() => setValue(prevMonth())}>
+        {String.fromCharCode(171)}
+      </div>
+      <div className='current'>{currMonthName()} {currYear()} </div>
+      <div className='next' onClick={() => setValue(nextMonth())}>{String.fromCharCode(187)}</div>
+    </div>
+    <div className='body'>
+      <div className='day-names'>
+        {
+        ['s', 'm', 't', 'w', 't', 'f', 's'].map(d => <div className='week'>{d}</div>)
+        }
+      </div>
+      {calendar}
+      </div>;
+    </div>
+)}
 
 // //Dummy Data//
 // const calendarInfo = [
