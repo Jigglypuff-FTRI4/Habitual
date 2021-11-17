@@ -9,7 +9,6 @@ username varchar(50) NOT NULL UNIQUE,
 password varchar(50) NOT NULL
 );
 
-
 ~ Create mood table ~
 CREATE TABLE mood (
 id SERIAL PRIMARY KEY,
@@ -19,7 +18,6 @@ comment varchar(500),
 user_id INT NOT NULL,
 FOREIGN KEY (user_id) REFERENCES users(id)
 );
-
 
 ~ Create exercise table ~
 CREATE TABLE exercise (
