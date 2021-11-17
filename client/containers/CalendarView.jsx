@@ -1,3 +1,12 @@
+/**
+ * ************************************
+ *
+ * @module CalendarView.jsx
+ * @description Component rendering the month, weekdays, and days
+ *
+ * ************************************
+ */
+
 import React, { useCallback, useEffect, useState } from 'react';
 import buildCalendar from '../components/Calendar.jsx';
 import moment from 'moment';

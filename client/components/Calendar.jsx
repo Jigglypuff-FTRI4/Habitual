@@ -1,3 +1,12 @@
+/**
+ * ************************************
+ *
+ * @module Calendar.jsx
+ * @description Component creating the array of weeks (including the day value in the week) in the month to pass to CalendarView component 
+ *
+ * ************************************
+ */
+
 import React from 'react';
 import DateBox from './DateBox.jsx';
 
