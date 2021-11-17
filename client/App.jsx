@@ -13,6 +13,7 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import NavBar from "./common/NavBar.jsx";
 import Home from "./containers/Home.jsx";
+import CalendarView from './containers/CalendarView.jsx'
 import { useTheme } from '@mui/material/styles'
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
       <NavBar />
       {/* <h1>this is the App component</h1> */}
       <Home />
+      <CalendarView />
     </div>
   );
 }

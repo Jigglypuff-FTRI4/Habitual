@@ -1,0 +1,49 @@
+#calendar-view {
+  border-style: groove;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+}
+
+// TODO update so it leverages flex or grid
+.calendar .day {
+  position: relative;
+  width: calc(100% / 7);
+  height: 44px;
+  display: inline-block;
+  background-color: white;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  z-index: 1;
+  text-align: center;
+}
+
+.selected {
+  border-color: rgb(72, 38, 226);
+  border-style: solid;
+}
+
+.before {
+  color: gray
+}
+
+.day-names .week {
+  position: relative;
+  width: calc(100% / 7);
+  height: 44px;
+  display: inline-block;
+  background-color: white;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  z-index: 1;
+  text-align: center;
+  font-weight: bold;
+  
+}
+
+//set style for previous, current, and next
+
+
+//add margin for the days so that the div doesnt jump around
