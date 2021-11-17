@@ -36,21 +36,7 @@ const Mood = (props) => {
     </Box>
   );
 };
-// function BoxSx() {
-//   return (
-//     <Box
-//       sx={{
-//         width: 300,
-//         height: 300,
-//         backgroundColor: "primary.dark",
-//         "&:hover": {
-//           backgroundColor: "primary.main",
-//           opacity: [0.9, 0.8, 0.7],
-//         },
-//       }}
-//     />
-//   );
-// }
+
 function valuetext(value) {
   return value;
 }
@@ -58,7 +44,7 @@ function DiscreteSlider(props) {
   return (
     <Box sx={{ width: 300 }}>
       <Slider
-        aria-label="Temperature"
+        aria-label="Mood"
         defaultValue={5}
         getAriaValueText={(value) => {
           props.setMoodSubmitted(value);
@@ -95,5 +81,20 @@ function MultilineTextFields(props) {
     </Box>
   );
 }
+// function BoxSx() {
+//   return (
+//     <Box
+//       sx={{
+//         width: 300,
+//         height: 300,
+//         backgroundColor: "primary.dark",
+//         "&:hover": {
+//           backgroundColor: "primary.main",
+//           opacity: [0.9, 0.8, 0.7],
+//         },
+//       }}
+//     />
+//   );
+// }
 
 export default Mood;

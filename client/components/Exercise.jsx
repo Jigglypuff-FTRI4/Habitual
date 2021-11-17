@@ -26,19 +26,15 @@ const Exercise = (props) => {
           <FormControl sx={{ m: 1, minWidth: 120 }}>
             <InputLabel id="exercise-label">Exercise</InputLabel>
             <Select
-              // setExerciseSubmitted={props.setExerciseSubmitted}
               labelId="exercise-label"
               id="exercise-select"
-              defaultValue={1}
+              defaultValue={"Walk"}
               label="Exercise"
               onChange={props.setExerciseSubmitted}
             >
-              <MenuItem value={1}>Walk</MenuItem>
-              <MenuItem value={2}>Jog</MenuItem>
-              <MenuItem value={3}>Run</MenuItem>
-              {/* <MenuItem value={"Walk"}>Walk</MenuItem>
+              <MenuItem value={"Walk"}>Walk</MenuItem>
               <MenuItem value={"Jog"}>Jog</MenuItem>
-              <MenuItem value={"Run"}>Run</MenuItem> */}
+              <MenuItem value={"Run"}>Run</MenuItem>
             </Select>
           </FormControl>
           <FormControl sx={{ m: 1, minWidth: 120 }}>
