@@ -24,13 +24,14 @@ const Exercise = (props) => {
         {/* <strong>Add Exercise</strong> */}
         <Box sx={{ minWidth: 120 }}>
           <FormControl sx={{ m: 1, minWidth: 120 }}>
+            {/* { props.setExerciseSubmitted("Jog") } */}
             <InputLabel id="exercise-label">Exercise</InputLabel>
             <Select
               labelId="exercise-label"
               id="exercise-select"
-              defaultValue={"Walk"}
+              // defaultValue={"Walk"}
               label="Exercise"
-              onChange={props.setExerciseSubmitted}
+              onClick={(e) => props.setExerciseSubmitted(e.target.innerText)}
             >
               <MenuItem value={"Walk"}>Walk</MenuItem>
               <MenuItem value={"Jog"}>Jog</MenuItem>
@@ -43,9 +44,9 @@ const Exercise = (props) => {
               // setDurationSubmitted={props.setDurationSubmitted}
               labelId="duration-label"
               id="duration-select"
-              defaultValue={30}
+              defaultValue={props.setDurationSubmitted30}
               label="Duration"
-              onChange={props.setDurationSubmitted}
+              onChange={(e) => props.setDurationSubmitted(e.target.value)}
             >
               <MenuItem value={30}>30 Minutes</MenuItem>
               <MenuItem value={60}>1 Hour</MenuItem>
