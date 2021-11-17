@@ -11,6 +11,7 @@
 
 import React, { useCallback, useEffect, useState } from "react";
 import Mood from "../components/Mood.jsx";
+import Exercise from "../components/Exercise.jsx";
 
 const Home = (props) => {
   //STATE//
@@ -18,10 +19,19 @@ const Home = (props) => {
   const [commentSubmitted, setCommentSubmitted] = useState("");
   const [submitComplete, setSubmitComplete] = useState(false);
 
+  const [exerciseSubmitted, setExerciseSubmitted] = useState("");
+  const [durationSubmitted, setDurationSubmitted] = useState("");
+  const [exerciseSubmitComplete, setExerciseSubmitComplete] = useState(false);
+
   const handleClick = (e) => {
     console.log("fetch request will happen here");
     //if res === 200:
     setSubmitComplete(true);
+  };
+
+  const handleExerciseClick = (e) => {
+    console.log("new fetch here");
+    setExerciseSubmitComplete(true);
   };
 
   if (submitComplete === false) {
@@ -33,6 +43,11 @@ const Home = (props) => {
           setMoodSubmitted={setMoodSubmitted}
           setCommentSubmitted={setCommentSubmitted}
           handleClick={handleClick}
+        />
+        <Exercise
+          setExerciseSubmitted={setExerciseSubmitted}
+          setDurationSubmitted={setDurationSubmitted}
+          handleExerciseClick={handleExerciseClick}
         />
       </div>
     );
