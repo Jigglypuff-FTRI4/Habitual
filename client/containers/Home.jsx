@@ -37,8 +37,6 @@ const Home = (props) => {
   if (submitComplete === false) {
     return (
       <div id="home-box">
-        <h1> In Home page</h1>
-        {/* { console.log('test')} */}
         <Mood
           setMoodSubmitted={setMoodSubmitted}
           setCommentSubmitted={setCommentSubmitted}
