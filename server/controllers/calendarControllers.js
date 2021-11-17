@@ -2,7 +2,7 @@
  * ************************************
  *
  * @module calendarController
- * @description Contains all controllers for the calendar page
+ * @description Contains all controllers for the calendar page (getMoods, getExercise)
  *
  * ************************************
  */
