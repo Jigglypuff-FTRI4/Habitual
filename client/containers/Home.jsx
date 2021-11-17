@@ -12,6 +12,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Mood from "../components/Mood.jsx";
 import Exercise from "../components/Exercise.jsx";
+import formattedDate from "../common/date.js";
 
 const Home = (props) => {
   //STATE//
@@ -23,16 +24,52 @@ const Home = (props) => {
   const [durationSubmitted, setDurationSubmitted] = useState("");
   const [exerciseSubmitComplete, setExerciseSubmitComplete] = useState(false);
 
+  // Generates current date
+  const currentDate = formattedDate();
+
+  useEffect(() => {
+    // fetch('/home/2021-11-30/2')
+    fetch(`/home/${currentDate}/2`)
+      .then((data) => data.json())
+      .then((data) => {
+        setSubmitComplete(data);
+      });
+  }, [handleClick]);
 
   const handleClick = (e) => {
-    console.log("fetch request will happen here");
-
-    setSubmitComplete(true);
+    console.log("mood request");
+    fetch("/home", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        date: currentDate,
+        mood: moodSubmitted,
+        comment: commentSubmitted,
+        user_id: 2,
+      }),
+    })
+      .then((data) => data.json())
+      .then((data) => console.log(data));
   };
 
   const handleExerciseClick = (e) => {
-    console.log("new fetch here");
-    setExerciseSubmitComplete(true);
+    console.log("exercise request");
+    fetch("/home/exercise", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        date: currentDate,
+        type: exerciseSubmitted,
+        duration: durationSubmitted,
+        user_id: 2,
+      }),
+    })
+      .then((data) => data.json())
+      .then((data) => console.log(data));
   };
 
   if (submitComplete === false) {
@@ -43,7 +80,7 @@ const Home = (props) => {
           setCommentSubmitted={setCommentSubmitted}
           handleClick={handleClick}
         />
-          <h3>How much exercise have you gotten today?</h3>
+        <h3>How much exercise have you gotten today?</h3>
         <Exercise
           setExerciseSubmitted={setExerciseSubmitted}
           setDurationSubmitted={setDurationSubmitted}
@@ -57,7 +94,10 @@ const Home = (props) => {
         <div>
           <h1>Thank you for submitting!</h1>
         </div>
-          <h3>You've already submitted your mood, but feel free to add more exercise!</h3>
+        <h3>
+          You've already submitted your mood, but feel free to add more
+          exercise!
+        </h3>
         <Exercise
           setExerciseSubmitted={setExerciseSubmitted}
           setDurationSubmitted={setDurationSubmitted}
@@ -67,7 +107,5 @@ const Home = (props) => {
     );
   }
 };
-
-
 
 export default Home;
