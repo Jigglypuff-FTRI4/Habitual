@@ -9,11 +9,12 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js',
   },
-  mode: process.env.NODE_ENV || 'production',
+  mode: process.env.NODE_ENV,
+  // mode: process.env.NODE_ENV || 'production',
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',

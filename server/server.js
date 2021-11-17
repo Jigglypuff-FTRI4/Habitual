@@ -1,14 +1,17 @@
+//require packages 
 const path = require('path');
 const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
 const dataController =  require('./controllers/dataControllers');
+const authControllers =  require('./controllers/authControllers');
 
 const PORT = 3000;
 
 // ROUTER: Parses incoming data
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, '../dist')))
 
@@ -18,7 +21,28 @@ app.get('/', (req, res) => {
 });
 
 
-//LOGIN APIs
+/* Create User 
+1. Check if the username specified in the req.body is found in the Users database: 
+  if found: in the controller return res.send('Username exists, please login or choose a different username')
+  if not found: 
+    create the user 
+    then set cookie
+*/
+app.post('/createUser', authControllers.checkUser, authControllers.createUser, authControllers.setCookie, (req, res) =>{
+  //console.log('in createUser API')
+  res.status(200).json({id: res.locals.user.id})
+})
+
+/* Create User 
+1. Check if the username specified in the req.body is found in the Users database: 
+  if found: in the controller return res.send('Username exists, please login or choose a different username')
+  if not found: 
+    create the user 
+    then set cookie
+*/
+app.post('/login', authControllers.verifyUser, authControllers.setCookie, (req, res) =>{
+  res.status(200).json({username: res.locals.user.username})
+})
 
 
 
