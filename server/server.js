@@ -16,19 +16,18 @@ const cookieParser = require('cookie-parser');
 //const dataControllers =  require('./controllers/dataControllers')
 const authControllers = require('./controllers/authControllers');
 const calendarControllers = require('./controllers/calendarControllers');
+const dataController =  require('./controllers/dataControllers');
 
-// initialize express server and declare a port for the server
 const PORT = 3000;
-const app = express();
 
-//insert global parsers for incoming data
-app.use(express.json());
+// ROUTER: Parses incoming data
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, '../dist')));
+app.use(express.static(path.join(__dirname, '../dist')))
 
-//serve html file when on root url
+// ROUTER: serve html file when on root url
 app.get('/', (req, res) => {
   return res
     .status(200)
@@ -36,15 +35,8 @@ app.get('/', (req, res) => {
     .sendFile(path.join(__dirname, '../index.html'));
 });
 
-//login APIs
-
-/* Create User 
-1. Check if the username specified in the req.body is found in the Users database: 
-  if found: in the controller return res.send('Username exists, please login or choose a different username')
-  if not found: 
-    create the user 
-    then set cookie
-*/
+// AUTH/LOGIN APIs
+// Create a user if username does not exist in database 
 app.post(
   '/createUser',
   authControllers.checkUser,
@@ -56,13 +48,7 @@ app.post(
   }
 );
 
-/* Create User 
-1. Check if the username specified in the req.body is found in the Users database: 
-  if found: in the controller return res.send('Username exists, please login or choose a different username')
-  if not found: 
-    create the user 
-    then set cookie
-*/
+// Verify if user exists. If no, send message to front end. If yes, set a cookie.
 app.post(
   '/login',
   authControllers.verifyUser,
@@ -72,9 +58,33 @@ app.post(
   }
 );
 
-//home page APIs
+//HOMEPAGE APIs
+// Get request to check if anything has been submitted that day
+app.get('/home/:date/:user_id', dataController.postCheck, (req, res) => {
+  console.log("GET request from '/home/:date/:user_id'...");
+  console.log(res.locals.postCheck)
+  return res.status(200).type('json').json(res.locals.postCheck);
+});
 
-//calendar page APIs
+
+// Post requests for mood
+app.post('/home', dataController.postMood, (req, res) => {
+  console.log("Hit '/home' post request...");
+
+  return res.status(200).type('json').send('Mood post successful');
+});
+
+
+// Post requests for exercise
+app.post('/home/exercise', dataController.postExercise, (req, res) => {
+  console.log("Hit '/home/exercise' post request...");
+
+  return res.status(200).type('json').send('Exercise post successful');
+});
+
+
+// CALENDER API(s)
+// Get request to fetch all mood and exercise data
 app.get(
   '/calendar/:userID/:startDate/:endDate',
   calendarControllers.getMoods,
@@ -84,12 +94,21 @@ app.get(
   }
 );
 
-//route error handler
+/* TODO
+- edit mood 
+- edit exercise 
+- delete exercise 
+- delete mood 
+*/
+
+// Route error handler
 app.use((req, res) => {
   return res.status(404).send('404 error');
 });
 
-//global error handler
+
+
+// Global error handler
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',

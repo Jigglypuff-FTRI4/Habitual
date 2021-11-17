@@ -47,4 +47,21 @@ WHERE u.id = ['userID here']
 AND date BETWEEN ['startDate'] AND ['endDate']
 ORDER BY date ASC;
 
+~ Insert Into Table 'exercise' Example ~
+INSERT INTO exercise (date, type, duration, user_id)
+VALUES ('YYYY-MM-DD', ['exercise string'], [duration INT], [user_id INT])
+RETURNING type, duration;
+******* replace VALUES with ($1, $2, $3, $4) when querying from controllers *******
+
+
+~ Insert Into Table 'mood' Example ~
+INSERT INTO mood (date, mood, comment, user_id)
+VALUES ('YYYY-MM-DD', [mood INT], ['your string here'], [user_id INT])
+RETURNING mood, comment;
+******* replace VALUES with ($1, $2, $3, $4) when querying from controllers *******
+
+~ Request specific data with conditions ~
+SELECT duration FROM exercise
+WHERE date = 'YYYY-MM-DD' AND user_id = 2;
+
 */

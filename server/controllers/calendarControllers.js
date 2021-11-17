@@ -72,4 +72,12 @@ calendarControllers.getExercise = (req, res, next) => {
   });
 };
 
+
+/* TODO
+- edit mood 
+- edit exercise 
+- delete exercise 
+- delete mood 
+*/
+
 module.exports = calendarControllers;
