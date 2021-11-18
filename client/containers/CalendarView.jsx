@@ -79,7 +79,7 @@ export default function Calender() {
     <div className='body'>
       <div className='day-names'>
         {
-        ['s', 'm', 't', 'w', 't', 'f', 's'].map(d => <div className='week'>{d}</div>)
+        ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'].map(d => <div className='week'>{d}</div>)
         }
       </div>
       {calendar}
