@@ -1,3 +1,12 @@
+/**
+ * ************************************
+ *
+ * @module CalendarView.jsx
+ * @description Component rendering the month, weekdays, and days
+ *
+ * ************************************
+ */
+
 import React, { useCallback, useEffect, useState } from 'react';
 import buildCalendar from '../components/Calendar.jsx';
 import moment from 'moment';
@@ -7,6 +16,25 @@ import dayStyles from './styles.js'
 export default function Calender() {
   const [calendarArray, setCalendarArray] = useState([]);
   const [value, setValue] = useState(moment()); //moment is default state
+  const [data, setData] = useState({});
+
+  // const userID = 1;
+  // const startDate = '2021-11-01';
+  // const endDate = '2021-11-31'; 
+  
+  //when component renders first time, fetches all mood and exercise data
+  useEffect(() => {
+    console.log('fetching data');
+    fetch(`/calendar/1/2021-11-01/2021-11-30`)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      setData(data);
+    })
+    .catch(err => {
+      console.log('Error occurred with data fetch: ', err)
+    });
+  }, [])
 
   useEffect(() => {
     setCalendarArray(buildCalendar(value));
@@ -51,7 +79,7 @@ export default function Calender() {
     <div className='body'>
       <div className='day-names'>
         {
-        ['s', 'm', 't', 'w', 't', 'f', 's'].map(d => <div className='week'>{d}</div>)
+        ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'].map(d => <div className='week'>{d}</div>)
         }
       </div>
       {calendar}
