@@ -28,12 +28,15 @@ const Home = (props) => {
   const currentDate = formattedDate();
 
   useEffect(() => {
+  }, [moodSubmitted]);
+
+  const updateSubmit = () => {
     fetch(`/home/${currentDate}/2`)
       .then((data) => data.json())
       .then((data) => {
         setSubmitComplete(data);
       });
-  }, [moodSubmitted]);
+  }
 
   const handleClick = (e) => {
     console.log("mood request");
@@ -50,7 +53,9 @@ const Home = (props) => {
       }),
     })
       .then((data) => data.json())
-      .then((data) => console.log(data));
+      .then((data) => console.log(data))
+      .then(() => updateSubmit())
+
   };
 
   const handleExerciseClick = (e) => {
@@ -68,7 +73,7 @@ const Home = (props) => {
       }),
     })
       .then((data) => data.json())
-      .then((data) => console.log(data));
+      .then((data) => console.log(data))
   };
 
   if (submitComplete === false) {
